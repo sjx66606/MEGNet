@@ -23,7 +23,7 @@ from sklearn.metrics import accuracy_score,precision_score,recall_score,f1_score
 import warnings
 from mne.decoding import CSP
 sys.path.append('../../')
-from model import EEG, MEegNet, lmda, conformer, lmdaEmg, lmdaEmgCMC, MEegNetCMC
+from model import EEG, MEegNet, lmda, conformer, lmdaEmg, lmdaEmgCMC
 from utils import Prod_HEG_data, Prod_all_data, Prod_emg_data, Prod_cmc_data
 import tSNE
 # from visualization import tSNE
@@ -121,7 +121,7 @@ class ExGAN():
             self.model = MEegNet.MEegNet(chunk_size = 2500,
                  num_electrodes = 60).cuda()
         elif modelname.lower() == 'Eeg+Emg+CMC'.lower():
-            self.model = MEegNetCMC.MEegNet(chunk_size=625,
+            self.model = lmdaEmgCMC.LMDA(chunk_size=625,
                                          num_electrodes=channels).cuda()
         elif modelname == 'LMDA':
             # LMDA 模型
